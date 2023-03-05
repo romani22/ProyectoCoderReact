@@ -12,7 +12,7 @@ function App() {
 			<NavBar />
 			<div className='container'>
 				<div className='itemCenter'>
-					<ItemListContainer greeting='Mensaje' />
+					<ItemListContainer greeting='Mensaje ' />
 				</div>
 			</div>
 		</>
