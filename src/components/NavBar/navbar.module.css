@@ -1,0 +1,30 @@
+nav {
+	background-color: rgb(197, 197, 197);
+	color: white !important;
+	/* padding: 1rem; */
+}
+.navComponent {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+.navButto {
+	color: white !important;
+	cursor: pointer;
+	min-height: 3.5rem;
+}
+.navComponent .divLogo {
+	position: absolute;
+	left: 1rem;
+	height: -webkit-fill-available;
+	color: white;
+}
+.logo {
+	height: 5em;
+	padding: 1.5em;
+	will-change: filter;
+	transition: filter 300ms;
+}
+.logo:hover {
+	filter: drop-shadow(0 0 2em #646cffaa);
+}
