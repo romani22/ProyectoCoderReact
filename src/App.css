@@ -1,3 +1,7 @@
+.container {
+	margin-top: 4rem;
+	min-height: calc(100vh - 4rem);
+}
 .itemCenter {
 	display: flex;
 	justify-content: center;
