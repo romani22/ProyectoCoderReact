@@ -1,6 +1,12 @@
 nav {
 	background-color: rgb(197, 197, 197);
 	color: white !important;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	min-height: 3.5rem;
+	max-height: 3.5rem;
+	z-index: 999;
 	/* padding: 1rem; */
 }
 .navComponent {

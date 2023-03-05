@@ -6,7 +6,7 @@ import styles from "./cartWidget.module.css";
 const CartWidget = () => {
 	return (
 		<IconButton aria-label='cart' className={styles.containerCart}>
-			<Badge badgeContent={4} color='primary'>
+			<Badge badgeContent={1} color='primary'>
 				<ShoppingCartIcon />
 			</Badge>
 		</IconButton>
