@@ -1,8 +1,8 @@
-import React from "react";
-import styles from "./navbar.module.css";
-import logo from "../../assets/img/logoNav.png";
-import { Button, Menu, MenuItem } from "@mui/material";
-import CartWidget from "../CartWidget";
+import React from 'react';
+import styles from './navbar.module.css';
+import logo from '../../assets/img/logoNav.png';
+import { Button, Menu, MenuItem } from '@mui/material';
+import CartWidget from '../CartWidget';
 const NavBar = () => {
 	const [Category, setCategory] = React.useState(null);
 	const open = Boolean(Category);
@@ -20,20 +20,16 @@ const NavBar = () => {
 
 			<Button className={styles.navButto}>HOME</Button>
 			<Button className={styles.navButto}>TIENDA</Button>
-			<Button
-				id='basic-button'
-				onClick={handleClick}
-				className={styles.navButto}
-			>
+			<Button id="basic-button" onClick={handleClick} className={styles.navButto}>
 				CATEGORIA
 			</Button>
 			<Menu
-				id='basic-menu'
+				id="basic-menu"
 				anchorEl={Category}
 				open={open}
 				onClose={handleClose}
 				MenuListProps={{
-					"aria-labelledby": "basic-button",
+					'aria-labelledby': 'basic-button',
 				}}
 			>
 				<MenuItem onClick={handleClose}>ALIMENTO</MenuItem>
