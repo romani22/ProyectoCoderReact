@@ -1,22 +1,19 @@
-import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
-import perros from '../../assets/img/perros.jpg';
-import React from 'react';
+import CardItem from '../CardItem';
 
-const ItemListContainer = (prop) => {
+const ItemListContainer = ({ productos }) => {
 	return (
 		<div className="container">
-			<div className="itemCenter">
-				<Card sx={{ maxWidth: 345 }}>
-					<CardActionArea>
-						<CardMedia component="img" image={perros} alt="Perros" />
-						<CardContent>
-							<Typography gutterBottom variant="h5" component="div">
-								{prop.greeting}
-							</Typography>
-						</CardContent>
-					</CardActionArea>
-				</Card>
-			</div>
+			{productos.map((producto, i) => {
+				return (
+					<CardItem
+						identificacion={i}
+						greeting="Mensaje "
+						raza={producto.name}
+						imagen={producto.image_link}
+						id={producto.id}
+					/>
+				);
+			})}
 		</div>
 	);
 };
