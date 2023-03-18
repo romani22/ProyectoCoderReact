@@ -1,0 +1,8 @@
+.itemCenter {
+	text-decoration: none;
+	color: black;
+}
+.divCards {
+	display: flex;
+	justify-content: center;
+}

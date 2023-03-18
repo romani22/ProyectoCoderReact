@@ -1,17 +1,20 @@
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
-
-const CardItem = ({ raza, imagen, identificacion }) => {
+import { Link } from 'react-router-dom';
+import styles from './CardItem.module.css';
+const CardItem = ({ item }) => {
 	return (
-		<div id={identificacion} className="itemCenter">
-			<Card sx={{ maxWidth: 345 }}>
-				<CardActionArea>
-					<CardMedia component="img" image={imagen} alt="Perros" />
-					<CardContent>
-						<Typography gutterBottom variant="h5" component="div">
-							{raza}
-						</Typography>
-					</CardContent>
-				</CardActionArea>
+		<div className={styles.divCards}>
+			<Card key={item.id} sx={{ maxWidth: 345 }} className={styles.itemCenter}>
+				<Link to={`${item.name}`} className={styles.itemCenter}>
+					<CardActionArea>
+						<CardMedia component="img" image={item.image_link} alt="Perros" />
+						<CardContent>
+							<Typography gutterBottom variant="h5" component="div">
+								{item.name}
+							</Typography>
+						</CardContent>
+					</CardActionArea>
+				</Link>
 			</Card>
 		</div>
 	);
