@@ -23,10 +23,6 @@ const NavBar = () => {
 			<NavLink to="/" className={styles.navButto}>
 				<Button className={styles.navButto}>HOME</Button>
 			</NavLink>
-
-			<NavLink to="/productos" className={styles.navButto}>
-				<Button className={styles.navButto}>TIENDA</Button>
-			</NavLink>
 			<Button id="basic-button" onClick={handleClick} className={styles.navButto}>
 				CATEGORIA
 			</Button>

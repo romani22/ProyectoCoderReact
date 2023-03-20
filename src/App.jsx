@@ -8,7 +8,7 @@ import ViewHome from './components/ViewHome';
 function App() {
 	const [Productos, setProductos] = useState([]);
 	useEffect(() => {
-		fetch('../../public/MaterialsPetShop.json')
+		fetch('/MaterialsPetShop.json')
 			.then((res) => res.json())
 			.then((data) => {
 				setProductos(data);
@@ -20,8 +20,9 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Navigate to="/home" />} />
 				<Route path="/home" element={<ViewHome />} />
-				<Route path="/productos/:category" element={<ItemListContainer productos={Productos} />} />
-				<Route path="/productos/:category/:id" element={<ItemDetail items={Productos} />} />
+				<Route path="/productos/:category" element={<ItemListContainer key={`itemViews`} productos={Productos} />} />
+				<Route path="/:Url/:category/:id" element={<ItemDetail key={`detailItem`} items={Productos} />} />
+				<Route path="/:category/:id" element={<ItemDetail key={`detailHome`} items={Productos} />} />
 				<Route path="*" element={<h3>404 Not Found</h3>} />
 			</Routes>
 		</div>

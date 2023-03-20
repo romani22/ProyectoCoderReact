@@ -7,7 +7,7 @@ const ViewHome = () => {
 	const [Productos, setProductos] = useState([]);
 	const [Loading, setLoading] = useState(true);
 	useEffect(() => {
-		fetch('../../public/MaterialsPetShop.json')
+		fetch('/MaterialsPetShop.json')
 			.then((res) => res.json())
 			.then((data) => {
 				setProductos(data);
@@ -90,7 +90,7 @@ const ViewHome = () => {
 				{Loading ? (
 					<Skeleton animation="wave" variant="rectangular" width={410} height={300} />
 				) : (
-					<ItemListContainer productos={Productos} />
+					<ItemListContainer key={`itemHome`} productos={Productos} />
 				)}
 			</div>
 		</div>

@@ -7,13 +7,11 @@ const CardItem = ({ item, grupo }) => {
 	const [Url, setUrl] = useState();
 	useEffect(() => {
 		if (category == undefined) {
-			console.log(grupo);
-			setUrl(`/productos/${grupo}/${item.id}`);
+			setUrl(`/${grupo}/${item.id}`);
 		} else {
-			setUrl(`/productos/${category}/${item.id}`);
+			setUrl(`/Item/${category}/${item.id}`);
 		}
-	}, []);
-
+	}, [category, item, grupo]);
 	return (
 		<div className={styles.divCards}>
 			<Card key={item.id} sx={{ maxWidth: 345 }} className={styles.itemCenter}>
