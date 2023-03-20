@@ -3,39 +3,41 @@ import styles from './itemDetail.module.css';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-const ItemDetail = () => {
-	const [Product, setProduct] = useState({});
+const ItemDetail = ({ items }) => {
+	const [Productos, setProductos] = useState([]);
 	const [Loading, setLoading] = useState(true);
-	const { name, category } = useParams();
-	let url = '';
-	if (category == 'dogs') {
-		url = `https://api.api-ninjas.com/v1/dogs?name=${name}`;
-	} else {
-		url = `https://api.api-ninjas.com/v1/cats?name=${name}`;
-	}
-	console.log(category);
+	const { id, category } = useParams();
 	useEffect(() => {
-		fetch(`${url}`, {
-			headers: { 'X-Api-Key': 'IlgUCArWly+/1FjOBaoMww==0U1GuSxGn6o4Wj4m' },
-			contentType: 'application/json',
-		})
-			.then((res) => res.json())
-			.then((data) => {
-				setProduct(data[0]);
+		let item;
+		if (items.length != 0) {
+			if (category != undefined) {
+				item = items[category].filter((producto) => producto.id == id);
+				console.log(item);
+				setProductos(item[0]);
 				setLoading(false);
-			});
-	}, []);
+			}
+		}
+	});
 	return (
 		<div className={styles.itemCenter}>
 			{Loading ? (
 				<Skeleton animation="wave" variant="rectangular" width={410} height={300} />
 			) : (
-				<Card key={Product.id} sx={{ maxWidth: 345 }}>
+				<Card key={Productos.id} sx={{ maxWidth: 345 }}>
 					<CardActionArea>
-						<CardMedia component="img" image={Product.image_link} alt="Perros" />
+						<CardMedia component="img" image={Productos.img_link} alt="Perros" />
 						<CardContent>
 							<Typography gutterBottom variant="h5" component="div">
-								{Product.name}
+								{Productos.nombre}
+							</Typography>
+							<Typography gutterBottom variant="h5" component="div">
+								$ {Productos.precio}
+							</Typography>
+							<Typography gutterBottom variant="p" component="div">
+								Descripción: {Productos.descripcion} Edad de uso: {Productos.edad_recomendada}
+							</Typography>
+							<Typography gutterBottom variant="p" component="div">
+								Edad de uso: {Productos.edad_recomendada}
 							</Typography>
 						</CardContent>
 					</CardActionArea>
@@ -44,5 +46,4 @@ const ItemDetail = () => {
 		</div>
 	);
 };
-
 export default ItemDetail;

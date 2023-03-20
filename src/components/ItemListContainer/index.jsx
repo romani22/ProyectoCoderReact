@@ -5,36 +5,37 @@ import CardItem from '../CardItem';
 import styles from './ItemListContainer.module.css';
 
 const ItemListContainer = ({ productos }) => {
-	const [Products, setProducts] = useState([]);
-	const [Loading, setLoading] = useState(true);
+	const [Options, setOptions] = useState([]);
 	const { category } = useParams();
-	let url = '';
-	if (category == 'dogs') {
-		url = 'https://api.api-ninjas.com/v1/dogs?trainability=5';
-	} else {
-		url = 'https://api.api-ninjas.com/v1/cats?grooming=5';
-	}
-	const getProdructos = async () => {
-		const result = await fetch(`${url}`, {
-			headers: { 'X-Api-Key': 'IlgUCArWly+/1FjOBaoMww==0U1GuSxGn6o4Wj4m' },
-			contentType: 'application/json',
-		});
-		const data = await result.json();
-		setProducts(data);
-		setLoading(false);
-	};
+	let cards = [];
 	useEffect(() => {
-		getProdructos();
-	}, []);
+		if (productos.length != 0) {
+			if (category != undefined) {
+				productos[category].map((producto, i) => {
+					cards.push([producto, category]);
+				});
+				setOptions(cards);
+			} else {
+				let categorias = Object.keys(productos);
+				categorias.forEach((element) => {
+					productos[element].map((producto, i) => {
+						if (i < 6) {
+							cards.push([producto, element]);
+						}
+					});
+				});
+				setOptions(cards);
+			}
+		}
+	}, [category]);
+
 	return (
-		<div id="item" className={styles.centradoItems}>
-			{Loading ? (
-				<Skeleton animation="wave" variant="rectangular" width={410} height={300} />
-			) : (
-				Products.map((producto) => {
-					return <CardItem greeting="Mensaje " item={producto} />;
-				})
-			)}
+		<div>
+			<div id="item" className={styles.centradoItems}>
+				{Options.map((producto, i) => {
+					return <CardItem id={i} grupo={producto[1]} item={producto[0]} />;
+				})}
+			</div>
 		</div>
 	);
 };

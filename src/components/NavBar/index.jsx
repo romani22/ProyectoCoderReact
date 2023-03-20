@@ -39,16 +39,16 @@ const NavBar = () => {
 					'aria-labelledby': 'basic-button',
 				}}
 			>
-				<Link to="/productos" className={styles.categoryButto}>
+				<Link to="/productos/alimento" className={styles.categoryButto}>
 					<MenuItem onClick={handleClose}>ALIMENTO</MenuItem>
 				</Link>
-				<Link to="/productos" className={styles.categoryButto}>
+				<Link to="/productos/Ropa" className={styles.categoryButto}>
 					<MenuItem onClick={handleClose}>ROPA</MenuItem>
 				</Link>
-				<Link to="/productos" className={styles.categoryButto}>
+				<Link to="/productos/juguetes" className={styles.categoryButto}>
 					<MenuItem onClick={handleClose}>JUGUETES</MenuItem>
 				</Link>
-				<Link to="/productos" className={styles.categoryButto}>
+				<Link to="/productos/otros" className={styles.categoryButto}>
 					<MenuItem onClick={handleClose}>OTROS</MenuItem>
 				</Link>
 			</Menu>
