@@ -46,29 +46,31 @@ const ItemListContainer = () => {
 			) : (
 				Categorys.map((Categoria, i) => {
 					return (
-						<div key={i} className={styles.cardCategory}>
-							<div id="item">
-								{BtnVolver && (
-									<Link to="/home" className={styles.buttonReverse}>
-										<Button variant="contained">
-											<KeyboardReturnIcon></KeyboardReturnIcon>
-											Volver
-										</Button>
-									</Link>
-								)}
-								<h1 className={styles.textCenter}>{Categoria}</h1>
+						<div key={i}>
+							{BtnVolver && (
+								<Link to="/home" className={styles.linkReverse}>
+									<Button variant="contained" className={styles.buttonReverse}>
+										<KeyboardReturnIcon></KeyboardReturnIcon>
+										Volver
+									</Button>
+								</Link>
+							)}
+							<div className={styles.cardCategory}>
+								<div>
+									<h1 className={styles.textCenter}>{Categoria}</h1>
+								</div>
+								<Grid container spacing={4}>
+									{Options.map((item) => {
+										if (item.category == Categoria) {
+											return (
+												<Grid key={item.id} item xs={2}>
+													<ItemList key={item.id} grupo={Categoria} item={item} />
+												</Grid>
+											);
+										}
+									})}
+								</Grid>
 							</div>
-							<Grid container spacing={4}>
-								{Options.map((item) => {
-									if (item.category == Categoria) {
-										return (
-											<Grid key={item.id} item xs={2}>
-												<ItemList key={item.id} grupo={Categoria} item={item} />
-											</Grid>
-										);
-									}
-								})}
-							</Grid>
 						</div>
 					);
 				})

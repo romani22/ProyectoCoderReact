@@ -4,7 +4,7 @@ import ButtonCategory from '../ButtonCategory';
 const ViewHome = () => {
 	return (
 		<div>
-			<div className={styles.divCards}>
+			<div className={styles.divCategory}>
 				<ButtonCategory url="/productos/Alimento" key={1} img="../src/assets/img/comida.jpg" text="ALIMENTOS" identify="CardDog" />
 				<ButtonCategory url="/productos/Ropa" key={2} img="../src/assets/img/ropa.jpg" text="ROPA" identify="CardRopa" />
 				<ButtonCategory url="/productos/Juguetes" key={3} img="../src/assets/img/juguetes.jpg" text="JUGUETES" identify="CardJuguete" />

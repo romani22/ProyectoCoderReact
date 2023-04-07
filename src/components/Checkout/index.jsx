@@ -9,6 +9,7 @@ import db from '../../../db/firebase-config';
 import Swal from 'sweetalert2';
 import '../../../node_modules/sweetalert2/dist/sweetalert2.css';
 import CardUserData from '../CardUserData';
+import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 const Checkout = () => {
 	const { cartItems } = useContext(CartShopContext);
 	const [montoFinal, setMontoFinal] = useState(0);
@@ -56,7 +57,8 @@ const Checkout = () => {
 			) : (
 				<>
 					{ViewEmpty ? (
-						<div className={styles.margin}>
+						<div className={styles.cartEmpty}>
+							<ProductionQuantityLimitsIcon sx={{ fontSize: 90 }} />
 							<h2> Carrito Vacio</h2>
 						</div>
 					) : (
@@ -70,8 +72,8 @@ const Checkout = () => {
 								);
 							})}
 							<div>
-								<h2 className={styles.montoFinal}> Monto total:{montoFinal.toFixed(2)}</h2>
-								<Button onClick={handleClickOpen} variant="contained">
+								<h2 className={styles.montoFinal}> Monto total: ${montoFinal.toFixed(2)}</h2>
+								<Button onClick={handleClickOpen} className={styles.buttonCompra} variant="contained">
 									Comprar
 								</Button>
 								<CardUserData open={open} handleSave={handleSave} handleClose={handleClose} />
