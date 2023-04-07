@@ -1,23 +1,23 @@
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import styles from './CardItem.module.css';
-const CardItem = ({ item, grupo }) => {
+import styles from './ItemList.module.css';
+const ItemList = ({ item, grupo }) => {
 	const { category } = useParams();
 	const [Url, setUrl] = useState();
 	useEffect(() => {
 		if (category == undefined) {
-			setUrl(`/${grupo}/${item.id}`);
+			setUrl(`/Home/${item.id}`);
 		} else {
-			setUrl(`/Item/${category}/${item.id}`);
+			setUrl(`/${category}/${item.id}`);
 		}
 	}, [category, item, grupo]);
 	return (
 		<div className={styles.divCards}>
-			<Card key={item.id} sx={{ maxWidth: 345 }} className={styles.itemCenter}>
-				<Link key={item.id} to={`${Url}`} className={styles.itemCenter}>
+			<Card sx={{ maxWidth: 345 }} className={styles.itemCenter}>
+				<Link to={`${Url}`} className={styles.itemCenter}>
 					<CardActionArea>
-						<CardMedia component="img" image={item.img_link} alt="Perros" />
+						<CardMedia className={styles.imgSize} component="img" image={item.img_link} alt="Perros" />
 						<CardContent>
 							<Typography gutterBottom variant="h5" component="div">
 								{item.nombre}
@@ -33,4 +33,4 @@ const CardItem = ({ item, grupo }) => {
 	);
 };
 
-export default CardItem;
+export default ItemList;

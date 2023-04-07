@@ -1,0 +1,41 @@
+.itemCard {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	text-decoration: none;
+}
+.itemCenter {
+	padding-left: 3rem;
+	padding-right: 3rem;
+}
+.buttonReverse {
+	margin-left: 2rem !important;
+	text-decoration: none !important;
+}
+.textCenter {
+	text-align: center;
+}
+.img {
+	max-width: 50vw;
+	max-height: 50vh;
+	width: 50vw !important;
+	object-fit: contain !important;
+}
+.divImg {
+	display: flex;
+	justify-content: center;
+}
+.productCard {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	padding: 1rem;
+	margin-bottom: 2rem;
+}
+.productImage {
+	display: flex;
+	justify-content: center;
+}
+.imageSize {
+	max-height: 35vh;
+}

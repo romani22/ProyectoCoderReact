@@ -8,9 +8,17 @@
 	align-items: center;
 	margin-top: 1rem;
 }
-.cards {
-	/* display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: center; */
+
+.TitleError {
+	padding-top: 5rem;
+}
+#root {
+	min-height: 100vh;
+	background-image: url('./assets/img/RERBOZ4SVRHNZMFVZYM5JMEXRI.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+.margin {
+	padding-top: 4rem;
 }

@@ -1,76 +1,78 @@
-import { Button, Skeleton } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { Button, Grid, Skeleton } from '@mui/material';
+import { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import CardItem from '../CardItem';
 import styles from './ItemListContainer.module.css';
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
-import db from '../../../db/firebase-config';
-import { addDoc, collection, getDocs } from 'firebase/firestore';
-import { async } from '@firebase/util';
-const ItemListContainer = ({ productos, key }) => {
+import { ItemsContext } from '../../contexts/ItemsContext';
+import ItemList from '../ItemList';
+const ItemListContainer = () => {
 	const [Options, setOptions] = useState([]);
+	const [Categorys, setCategorys] = useState([]);
 	const [BtnVolver, setBtnVolver] = useState(false);
+	const [Loading, setLoading] = useState(true);
 	const { category } = useParams();
-	const itemsRef = collection(db, 'Ropa');
-	useEffect(() => {
-		if (productos.length != 0) {
-			if (category != undefined) {
-				setOptions(
-					Object.keys(productos)
-						.filter((propiedad) => propiedad === category)
-						.reduce((obj, key) => {
-							obj[key] = productos[key];
-							return obj;
-						}, {})
-				);
-				setBtnVolver(true);
-			} else {
-				setOptions(productos);
-				setBtnVolver(false);
+	const { Productos, getItems } = useContext(ItemsContext);
+	const getCategorys = () => {
+		const categorysObj = [];
+		Productos.forEach((obj) => {
+			if (!categorysObj.includes(obj.category)) {
+				categorysObj.push(obj.category);
 			}
-		}
-	}, [category, productos]);
-	const getItems = async () => {
-		const itemsCollection = await getDocs(itemsRef);
-		const items = itemsCollection.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-		console.log(items);
+		});
+		setCategorys(categorysObj);
 	};
 	useEffect(() => {
 		getItems();
-	});
+	}, []);
 
-	const addItem = async (e) => {
-		e.preventDefault();
-		await addDoc(itemsRef, {
-			//data ejem: prop: value,
-		});
-		getItems();
-	};
+	useEffect(() => {
+		if (category != undefined) {
+			setOptions(Productos.filter((propiedad) => propiedad.category === category));
+			setCategorys([category]);
+			setBtnVolver(true);
+		} else {
+			getCategorys();
+			setOptions(Productos);
+			setBtnVolver(false);
+		}
+		if (Productos.length != 0) {
+			setLoading(false);
+		}
+	}, [category, Productos]);
 	return (
-		<div id={key}>
-			{Object.keys(Options).map((category) => {
-				return (
-					<>
-						<div id="item" className={styles.centerTitle}>
-							{BtnVolver && (
-								<Link to="/home" className={styles.buttonReverse}>
-									<Button variant="contained">
-										<KeyboardReturnIcon></KeyboardReturnIcon>
-										Volver
-									</Button>
-								</Link>
-							)}
-							<h1 className={styles.textCenter}>{category}</h1>
+		<div>
+			{Loading ? (
+				<Skeleton animation="wave" variant="rectangular" width={410} height={300} />
+			) : (
+				Categorys.map((Categoria, i) => {
+					return (
+						<div key={i} className={styles.cardCategory}>
+							<div id="item">
+								{BtnVolver && (
+									<Link to="/home" className={styles.buttonReverse}>
+										<Button variant="contained">
+											<KeyboardReturnIcon></KeyboardReturnIcon>
+											Volver
+										</Button>
+									</Link>
+								)}
+								<h1 className={styles.textCenter}>{Categoria}</h1>
+							</div>
+							<Grid container spacing={4}>
+								{Options.map((item) => {
+									if (item.category == Categoria) {
+										return (
+											<Grid key={item.id} item xs={2}>
+												<ItemList key={item.id} grupo={Categoria} item={item} />
+											</Grid>
+										);
+									}
+								})}
+							</Grid>
 						</div>
-						<div id="item" className={styles.centradoItems}>
-							{Options[category].map((producto, i) => {
-								return <CardItem id={i} grupo={category} item={producto} />;
-							})}
-						</div>
-					</>
-				);
-				// }
-			})}
+					);
+				})
+			)}
 		</div>
 	);
 };

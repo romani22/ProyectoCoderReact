@@ -35,22 +35,19 @@ const NavBar = () => {
 					'aria-labelledby': 'basic-button',
 				}}
 			>
-				<Link to="/productos/alimento" className={styles.categoryButto}>
+				<Link to="/productos/Alimento" className={styles.categoryButto}>
 					<MenuItem onClick={handleClose}>ALIMENTO</MenuItem>
 				</Link>
 				<Link to="/productos/Ropa" className={styles.categoryButto}>
 					<MenuItem onClick={handleClose}>ROPA</MenuItem>
 				</Link>
-				<Link to="/productos/juguetes" className={styles.categoryButto}>
+				<Link to="/productos/Juguetes" className={styles.categoryButto}>
 					<MenuItem onClick={handleClose}>JUGUETES</MenuItem>
 				</Link>
-				<Link to="/productos/otros" className={styles.categoryButto}>
+				<Link to="/productos/Otros" className={styles.categoryButto}>
 					<MenuItem onClick={handleClose}>OTROS</MenuItem>
 				</Link>
 			</Menu>
-			<NavLink to="/contacto" className={styles.navButto}>
-				<Button className={styles.navButto}>CONTACTO</Button>
-			</NavLink>
 
 			<CartWidget className={styles.navButto} />
 		</nav>

@@ -5,13 +5,18 @@
 	grid-gap: 10px;
 }
 
-.centerTitle {
-	padding-top: 5rem;
-}
 .textCenter {
 	text-align: center;
 }
 .buttonReverse {
 	margin-left: 2rem !important;
 	text-decoration: none !important;
+}
+.cardCategory {
+	background-color: #fdfdfdbf;
+	margin-left: 4rem;
+	margin-right: 4rem;
+	margin-bottom: 3rem;
+	padding: 2rem;
+	box-shadow: 5px 3px 12px 2px #a39d9d;
 }

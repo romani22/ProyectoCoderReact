@@ -5,4 +5,9 @@
 .divCards {
 	display: flex;
 	justify-content: center;
+	flex-direction: column;
+}
+.imgSize {
+	max-height: 40vh;
+	/* min-height: 35vh; */
 }
