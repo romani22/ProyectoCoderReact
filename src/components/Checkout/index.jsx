@@ -3,7 +3,7 @@ import { CartShopContext } from '../../contexts/CartShop';
 import CardShop from '../CardShop';
 import { useEffect } from 'react';
 import styles from './Checkout.module.css';
-import { Button, Divider, Skeleton } from '@mui/material';
+import { Backdrop, Button, CircularProgress, Divider, Skeleton } from '@mui/material';
 import { collection, addDoc } from 'firebase/firestore';
 import db from '../../../db/firebase-config';
 import Swal from 'sweetalert2';
@@ -11,11 +11,12 @@ import '../../../node_modules/sweetalert2/dist/sweetalert2.css';
 import CardUserData from '../CardUserData';
 import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 const Checkout = () => {
-	const { cartItems } = useContext(CartShopContext);
+	const { cartItems, cleanAllCart } = useContext(CartShopContext);
 	const [montoFinal, setMontoFinal] = useState(0);
 	const [Loading, setLoading] = useState(true);
 	const [ViewEmpty, setViewEmpty] = useState(true);
 	const [open, setOpen] = useState(false);
+	const [openLoader, setOpenLoader] = useState(false);
 	const [Orden, setOrden] = useState({});
 	const orderCollectionRef = collection(db, 'orders');
 
@@ -28,6 +29,7 @@ const Checkout = () => {
 
 	const handleSave = (UserData) => {
 		setOrden({
+			id: (Math.random() * 10000000).toString().substring(0, 7),
 			items: cartItems.map((producto) => ({
 				id: producto.id,
 				nombre: producto.nombre,
@@ -38,8 +40,30 @@ const Checkout = () => {
 			date: Date(),
 			status: 'generada',
 		});
-		// addDoc(orderCollectionRef, Order);
 	};
+
+	useEffect(() => {
+		if (Object.keys(Orden).length > 0) {
+			setOpenLoader(true);
+			addDoc(orderCollectionRef, Orden)
+				.then(() => {
+					console.log('ID del nuevo documento:', Orden.id);
+					setOpenLoader(false);
+					Swal.fire({
+						icon: 'success',
+						title: 'Su compra se realizo correctamente, El codigo de orden de compra es: ' + Orden.id,
+						showConfirmButton: true,
+						allowOutsideClick: false,
+					});
+					setOrden({});
+					cleanAllCart();
+				})
+				.catch((error) => {
+					console.error('Error al guardar el documento:', error);
+				});
+		}
+	}, [Orden]);
+
 	useEffect(() => {
 		if (cartItems.length > 0) {
 			setLoading(false);
@@ -76,8 +100,11 @@ const Checkout = () => {
 								<Button onClick={handleClickOpen} className={styles.buttonCompra} variant="contained">
 									Comprar
 								</Button>
-								<CardUserData open={open} handleSave={handleSave} handleClose={handleClose} />
+								<CardUserData open={open} handleSave={handleSave} handleClose={handleClose} handleClickOpen={handleClickOpen} />
 							</div>
+							<Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={openLoader} onClick={handleClose}>
+								<CircularProgress color="inherit" />
+							</Backdrop>
 						</div>
 					)}
 				</>

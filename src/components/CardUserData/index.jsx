@@ -1,7 +1,7 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
 import { useEffect, useState } from 'react';
-
-const CardUserData = ({ open, handleSave, handleClose }) => {
+import Swal from 'sweetalert2';
+const CardUserData = ({ open, handleSave, handleClose, handleClickOpen }) => {
 	const [nombre, setNombre] = useState('');
 	const [apellido, setApellido] = useState('');
 	const [email, setEmail] = useState('');
@@ -31,11 +31,30 @@ const CardUserData = ({ open, handleSave, handleClose }) => {
 		setApellido('');
 		setEmail('');
 		setConfirm('');
+		setLocalidad('');
 		handleClose();
 	};
 	const handleSaveUser = () => {
-		handleClear();
-		handleSave(UserData);
+		if (nombre != '' && apellido != '' && email != '' && localidad != '') {
+			if (!validateEmail) {
+				handleClear();
+				handleSave(UserData);
+			} else {
+				handleClose();
+				Swal.fire({ title: 'La confirmacion de contraseña no es la correcta', confirmButtonText: 'OK' }).then((result) => {
+					if (result.isConfirmed) {
+						handleClickOpen();
+					}
+				});
+			}
+		} else {
+			handleClose();
+			Swal.fire({ title: 'Debe completar todo el formulario', confirmButtonText: 'OK' }).then((result) => {
+				if (result.isConfirmed) {
+					handleClickOpen();
+				}
+			});
+		}
 	};
 	useEffect(() => {
 		if (confirm == email) {
