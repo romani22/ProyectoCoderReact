@@ -32,3 +32,8 @@
 	margin-left: 5rem;
 	color: white;
 }
+.logo {
+	max-height: 40vh;
+	position: absolute;
+	right: 5vw;
+}

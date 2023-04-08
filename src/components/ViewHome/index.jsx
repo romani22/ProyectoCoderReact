@@ -1,11 +1,13 @@
 import ItemListContainer from '../ItemListContainer';
 import styles from './ViewHome.module.css';
 import ButtonCategory from '../ButtonCategory';
+import logo from '../../assets/img/logoNav.png';
 const ViewHome = () => {
 	return (
 		<>
 			<div className={styles.divTitle}>
 				<h1 className={styles.Title}>TU MEJOR AMIGO MERECE LO MEJOR</h1>
+				<img className={styles.logo} src={logo} />
 			</div>
 			<div className={styles.divCategory}>
 				<ButtonCategory url="/productos/Alimento" key={1} img="../src/assets/img/comida.jpg" text="ALIMENTOS" identify="CardDog" />
