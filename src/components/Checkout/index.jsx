@@ -47,12 +47,38 @@ const Checkout = () => {
 			setOpenLoader(true);
 			addDoc(orderCollectionRef, Orden)
 				.then(() => {
-					console.log('ID del nuevo documento:', Orden.id);
 					setOpenLoader(false);
 					Swal.fire({
 						icon: 'success',
-						title: 'Su compra se realizo correctamente, El codigo de orden de compra es: ' + Orden.id,
+						html: `<div style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
+									<h4>Número de orden ${Orden.id}</h4>
+									<table>
+										<thead>
+												<tr>
+												<th tyle="text-align: left;">Producto</th>
+												<th tyle="text-align: right;">Precio</th>
+												</tr>
+										</thead>
+										<tbody>
+												${Orden.items
+													.map(
+														(producto) => `
+												<tr>
+													<td style="text-align: left;">${producto.nombre}</td>
+													<td style="text-align: right;">$ ${producto.precio}</td>
+												</tr>`
+													)
+													.join('')}
+												<tr>
+													<td style="text-align: left;"><strong>Total:</strong></td>
+													<td style="text-align: right;">$ ${montoFinal.toFixed(2)}</td>
+												</tr>
+										</tbody>
+									</table>
+								</div>`,
+						title: 'Orden de compra',
 						showConfirmButton: true,
+						ConfirmButtonText: 'cerrar',
 						allowOutsideClick: false,
 					});
 					setOrden({});

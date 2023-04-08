@@ -3,7 +3,10 @@ import styles from './ViewHome.module.css';
 import ButtonCategory from '../ButtonCategory';
 const ViewHome = () => {
 	return (
-		<div>
+		<>
+			<div className={styles.divTitle}>
+				<h1 className={styles.Title}>TU MEJOR AMIGO MERECE LO MEJOR</h1>
+			</div>
 			<div className={styles.divCategory}>
 				<ButtonCategory url="/productos/Alimento" key={1} img="../src/assets/img/comida.jpg" text="ALIMENTOS" identify="CardDog" />
 				<ButtonCategory url="/productos/Ropa" key={2} img="../src/assets/img/ropa.jpg" text="ROPA" identify="CardRopa" />
@@ -13,7 +16,7 @@ const ViewHome = () => {
 			<div className={styles.divCards}>
 				<ItemListContainer key="viewHome" />
 			</div>
-		</div>
+		</>
 	);
 };
 

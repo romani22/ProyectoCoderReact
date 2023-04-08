@@ -8,17 +8,27 @@
 	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
-	padding-left: 4rem;
-	padding-right: 4rem;
+	padding-bottom: 4rem;
+	padding-top: 4rem;
 	margin-bottom: 5rem;
+	background-color: #fdfdfdfd;
 }
 .divCards {
-	display: flex;
-	justify-content: space-evenly;
-	align-items: center;
 	padding-left: 4rem;
 	padding-right: 4rem;
 }
 .iconCart {
 	font-size: 50px;
+}
+.divTitle {
+	min-height: 57vh;
+	display: flex;
+	align-items: center;
+}
+.Title {
+	text-shadow: 11px 6px 10px black;
+	font-size: 58px;
+	font-family: monospace;
+	margin-left: 5rem;
+	color: white;
 }

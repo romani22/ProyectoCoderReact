@@ -40,16 +40,16 @@ const ItemListContainer = () => {
 		}
 	}, [category, Productos]);
 	return (
-		<div>
+		<div className={styles.centradoView}>
 			{Loading ? (
 				<Skeleton animation="wave" variant="rectangular" width={410} height={300} />
 			) : (
 				Categorys.map((Categoria, i) => {
 					return (
-						<div key={i}>
+						<div key={i} className={styles.sizeCard}>
 							{BtnVolver && (
 								<Link to="/home" className={styles.linkReverse}>
-									<Button variant="contained" className={styles.buttonReverse}>
+									<Button variant="contained">
 										<KeyboardReturnIcon></KeyboardReturnIcon>
 										Volver
 									</Button>
@@ -59,16 +59,16 @@ const ItemListContainer = () => {
 								<div>
 									<h1 className={styles.textCenter}>{Categoria}</h1>
 								</div>
-								<Grid container spacing={4}>
-									{Options.map((item) => {
-										if (item.category == Categoria) {
+								<Grid container className={styles.centradoItems}>
+									{Options.filter((obj) => obj.category === Categoria)
+										.slice(0, Categorys.length > 1 ? 3 : undefined)
+										.map((item) => {
 											return (
-												<Grid key={item.id} item xs={2}>
+												<Grid key={item.id} item>
 													<ItemList key={item.id} grupo={Categoria} item={item} />
 												</Grid>
 											);
-										}
-									})}
+										})}
 								</Grid>
 							</div>
 						</div>

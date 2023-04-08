@@ -16,8 +16,8 @@ const ItemList = ({ item, grupo }) => {
 		<div className={styles.divCards}>
 			<Card sx={{ maxWidth: 345 }} className={styles.itemCenter}>
 				<Link to={`${Url}`} className={styles.itemCenter}>
-					<CardActionArea>
-						<CardMedia className={styles.imgSize} component="img" image={item.img_link} alt="Perros" />
+					<CardActionArea className={styles.divCards}>
+						<img src={item.img_link} alt={item.nombre} className={styles.imgSize} />
 						<CardContent>
 							<Typography gutterBottom variant="h5" component="div">
 								{item.nombre}

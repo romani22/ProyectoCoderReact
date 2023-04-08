@@ -1,15 +1,26 @@
-.centradoItems {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	grid-auto-rows: minmax(100px, auto);
-	grid-gap: 10px;
+.centradoView {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
-
+.centradoItems {
+	display: grid !important;
+	grid-template-columns: repeat(3, 2fr);
+	grid-auto-rows: minmax(100px, auto);
+	grid-gap: 30px;
+	height: 100%;
+}
+.sizeCard {
+	width: 100%;
+	max-width: 80vw;
+}
 .textCenter {
 	text-align: center;
-}
-.buttonReverse {
-	margin-bottom: 2rem !important;
+	font-size: 50px;
+	font-family: ui-monospace;
+	color: #4e4e4e;
+	text-shadow: 3px 3px 6px;
 }
 .linkReverse {
 	margin-left: 4rem !important;
@@ -17,9 +28,7 @@
 }
 .cardCategory {
 	background-color: #fdfdfdbf;
-	margin-left: 4rem;
-	margin-right: 4rem;
-	margin-bottom: 3rem;
+	margin: 2rem;
 	padding: 2rem;
-	box-shadow: 5px 3px 12px 2px #a39d9d;
+	box-shadow: 3px 4px 10px 0px #3c3b3b;
 }

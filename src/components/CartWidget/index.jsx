@@ -8,13 +8,13 @@ import { Link } from 'react-router-dom';
 const CartWidget = () => {
 	const { getCartCount } = useContext(CartShopContext);
 	return (
-		<IconButton aria-label="cart" className={styles.containerCart}>
-			<Link to={`/cart`} className={styles.itemCenter}>
+		<Link to={`/cart`} className={styles.itemCenter}>
+			<IconButton aria-label="cart" className={styles.containerCart}>
 				<Badge badgeContent={getCartCount()} color="primary">
 					<ShoppingCartIcon />
 				</Badge>
-			</Link>
-		</IconButton>
+			</IconButton>
+		</Link>
 	);
 };
 

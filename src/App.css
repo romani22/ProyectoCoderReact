@@ -14,9 +14,10 @@
 }
 #root {
 	min-height: 100vh;
-	background-image: url('./assets/img/RERBOZ4SVRHNZMFVZYM5JMEXRI.jpg');
+	background-image: url('./assets/img/fondo2.webp');
 	background-size: cover;
 	background-repeat: no-repeat;
+	background-position: bottom;
 	background-attachment: fixed;
 }
 .margin {

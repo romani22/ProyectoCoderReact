@@ -7,6 +7,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { CartShopContext } from '../../contexts/CartShop';
 import { ItemsContext } from '../../contexts/ItemsContext';
 import ItemQuantitySelector from '../ItemQuantitySelector';
+import Swal from 'sweetalert2';
 const ItemDetailContainer = () => {
 	const [returnUrl, setReturnUrl] = useState([]);
 	const [Loading, setLoading] = useState(true);
@@ -16,6 +17,12 @@ const ItemDetailContainer = () => {
 
 	const handleAddToCart = () => {
 		addToCart(Item, quantity);
+		Swal.fire({
+			icon: 'success',
+			title: 'Perfecto!',
+			text: 'Se cargo correctamente',
+			showConfirmButton: false,
+		});
 	};
 
 	const [quantity, setQuantity] = useState(1);
