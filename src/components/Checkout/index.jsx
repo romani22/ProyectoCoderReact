@@ -56,6 +56,7 @@ const Checkout = () => {
 										<thead>
 												<tr>
 												<th tyle="text-align: left;">Producto</th>
+												<th tyle="text-align: center;">Cant.</th>
 												<th tyle="text-align: right;">Precio</th>
 												</tr>
 										</thead>
@@ -65,12 +66,14 @@ const Checkout = () => {
 														(producto) => `
 												<tr>
 													<td style="text-align: left;">${producto.nombre}</td>
+													<td style="text-align: center;">${producto.cantidad}</td>
 													<td style="text-align: right;">$ ${producto.precio}</td>
 												</tr>`
 													)
 													.join('')}
 												<tr>
 													<td style="text-align: left;"><strong>Total:</strong></td>
+													<td style="text-align: left;"></td>
 													<td style="text-align: right;">$ ${montoFinal.toFixed(2)}</td>
 												</tr>
 										</tbody>
