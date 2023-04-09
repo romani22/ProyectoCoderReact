@@ -5,6 +5,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import ViewHome from './components/ViewHome';
 import Checkout from './components/Checkout';
+import ViewNotFound from './components/ViewNotFound';
 
 function App() {
 	return (
@@ -16,7 +17,7 @@ function App() {
 				<Route path="/productos/:category" element={<ItemListContainer />} />
 				<Route path="/:url/:id" element={<ItemDetailContainer />} />
 				<Route path="/cart" element={<Checkout />} />
-				<Route path="*" element={<h3 className="TitleError">404 Not Found</h3>} />
+				<Route path="*" element={<ViewNotFound />} />
 			</Routes>
 		</div>
 	);

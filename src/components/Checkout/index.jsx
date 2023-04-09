@@ -6,10 +6,10 @@ import styles from './Checkout.module.css';
 import { Backdrop, Button, CircularProgress, Divider, Skeleton } from '@mui/material';
 import { collection, addDoc } from 'firebase/firestore';
 import db from '../../../db/firebase-config';
-import Swal from 'sweetalert2';
 import '../../../node_modules/sweetalert2/dist/sweetalert2.css';
 import CardUserData from '../CardUserData';
 import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
+import TicketPurchase from '../TicketPurchase';
 const Checkout = () => {
 	const { cartItems, cleanAllCart } = useContext(CartShopContext);
 	const [montoFinal, setMontoFinal] = useState(0);
@@ -36,6 +36,7 @@ const Checkout = () => {
 				cantidad: producto.cantidad,
 				precio: producto.precio,
 			})),
+			MontoFinal: montoFinal,
 			UserData: UserData,
 			date: Date(),
 			status: 'generada',
@@ -48,42 +49,7 @@ const Checkout = () => {
 			addDoc(orderCollectionRef, Orden)
 				.then(() => {
 					setOpenLoader(false);
-					Swal.fire({
-						icon: 'success',
-						html: `<div style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
-									<h4>Número de orden ${Orden.id}</h4>
-									<table>
-										<thead>
-												<tr>
-												<th tyle="text-align: left;">Producto</th>
-												<th tyle="text-align: center;">Cant.</th>
-												<th tyle="text-align: right;">Precio</th>
-												</tr>
-										</thead>
-										<tbody>
-												${Orden.items
-													.map(
-														(producto) => `
-												<tr>
-													<td style="text-align: left;">${producto.nombre}</td>
-													<td style="text-align: center;">${producto.cantidad}</td>
-													<td style="text-align: right;">$ ${producto.precio}</td>
-												</tr>`
-													)
-													.join('')}
-												<tr>
-													<td style="text-align: left;"><strong>Total:</strong></td>
-													<td style="text-align: left;"></td>
-													<td style="text-align: right;">$ ${montoFinal.toFixed(2)}</td>
-												</tr>
-										</tbody>
-									</table>
-								</div>`,
-						title: 'Orden de compra',
-						showConfirmButton: true,
-						ConfirmButtonText: 'cerrar',
-						allowOutsideClick: false,
-					});
+					TicketPurchase({ Orden, montoFinal });
 					setOrden({});
 					cleanAllCart();
 				})

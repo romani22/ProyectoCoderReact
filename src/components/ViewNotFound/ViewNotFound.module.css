@@ -1,0 +1,9 @@
+.divNotFound {
+	display: flex;
+	justify-content: center;
+	margin-top: 10rem;
+}
+.imgNotFound {
+	background: #c5c5c5;
+	border-radius: 28px;
+}
