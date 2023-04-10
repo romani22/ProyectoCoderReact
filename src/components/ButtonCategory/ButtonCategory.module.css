@@ -4,11 +4,6 @@
 	align-items: center;
 	text-decoration: none;
 }
-.divCards {
-	display: flex;
-	justify-content: space-evenly;
-	align-items: center;
-}
 
 .DivImg {
 	top: 0;
