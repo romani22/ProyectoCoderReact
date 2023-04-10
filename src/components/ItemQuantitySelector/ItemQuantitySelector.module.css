@@ -1,4 +1,8 @@
-.MarginLaterales {
+.BotonGroupStyle {
+	margin: 1rem !important;
+	align-items: center;
+}
+.magenesText {
 	margin-left: 1rem !important;
 	margin-right: 1rem !important;
 }

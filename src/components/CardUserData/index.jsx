@@ -6,7 +6,7 @@ const CardUserData = ({ open, handleSave, handleClose, handleClickOpen }) => {
 	const [apellido, setApellido] = useState('');
 	const [email, setEmail] = useState('');
 	const [confirm, setConfirm] = useState('');
-	const [localidad, setLocalidad] = useState('');
+	const [telefono, setTelefono] = useState('');
 	const [validateEmail, setValidateEmail] = useState(false);
 	const [UserData, setUsetData] = useState([]);
 
@@ -23,19 +23,19 @@ const CardUserData = ({ open, handleSave, handleClose, handleClickOpen }) => {
 		setConfirm(event.target.value);
 	};
 
-	const handlelocalidadChange = (event) => {
-		setLocalidad(event.target.value);
+	const handleTelefonoChange = (event) => {
+		setTelefono(event.target.value);
 	};
 	const handleClear = () => {
 		setNombre('');
 		setApellido('');
 		setEmail('');
 		setConfirm('');
-		setLocalidad('');
+		setTelefono('');
 		handleClose();
 	};
 	const handleSaveUser = () => {
-		if (nombre != '' && apellido != '' && email != '' && localidad != '') {
+		if (nombre != '' && apellido != '' && email != '' && telefono != '') {
 			if (!validateEmail) {
 				handleClear();
 				handleSave(UserData);
@@ -65,8 +65,8 @@ const CardUserData = ({ open, handleSave, handleClose, handleClickOpen }) => {
 	}, [confirm]);
 
 	useEffect(() => {
-		setUsetData({ nombre, apellido, email, localidad });
-	}, [nombre, apellido, email, localidad]);
+		setUsetData({ nombre, apellido, email, telefono });
+	}, [nombre, apellido, email, telefono]);
 
 	return (
 		<Dialog open={open} onClose={handleClear}>
@@ -75,7 +75,7 @@ const CardUserData = ({ open, handleSave, handleClose, handleClickOpen }) => {
 				<DialogContentText>Si esta de acuerdo con su compra ingrese los siguientes datos.</DialogContentText>
 				<TextField autoFocus margin="dense" id="nombre" label="Nombre" type="text" fullWidth variant="standard" value={nombre} onChange={handleNombreChange} />
 				<TextField autoFocus margin="dense" id="Apellido" label="Apellido" type="text" fullWidth variant="standard" value={apellido} onChange={handleApellidoChange} />
-				<TextField autoFocus margin="dense" id="Localidad" label="Localidad" type="text" fullWidth variant="standard" value={localidad} onChange={handlelocalidadChange} />
+				<TextField autoFocus margin="dense" id="telefono" label="telefono" type="number" fullWidth variant="standard" value={telefono} onChange={handleTelefonoChange} />
 				<TextField autoFocus margin="dense" id="email" label="Email" type="email" fullWidth variant="standard" value={email} onChange={handleEmailChange} />
 				<TextField autoFocus margin="dense" error={validateEmail} id="confirm" label="Confirmar Email" type="email" fullWidth variant="standard" value={confirm} onChange={handleConfirmChange} />
 			</DialogContent>

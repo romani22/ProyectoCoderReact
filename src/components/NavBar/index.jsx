@@ -1,11 +1,11 @@
-import React from 'react';
 import styles from './navbar.module.css';
 import logo from '../../assets/img/logoNav.png';
 import { Button, Menu, MenuItem } from '@mui/material';
 import CartWidget from '../CartWidget';
 import { Link, NavLink } from 'react-router-dom';
+import { useState } from 'react';
 const NavBar = () => {
-	const [Category, setCategory] = React.useState(null);
+	const [Category, setCategory] = useState(null);
 	const open = Boolean(Category);
 	const handleClick = (event) => {
 		setCategory(event.currentTarget);
@@ -28,6 +28,7 @@ const NavBar = () => {
 			</Button>
 			<Menu
 				id="basic-menu"
+				disableScrollLock={true}
 				anchorEl={Category}
 				open={open}
 				onClose={handleClose}

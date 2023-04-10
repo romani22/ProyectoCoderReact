@@ -5,13 +5,14 @@
 	text-decoration: none;
 }
 
-.buttonReverse {
-	margin-left: 4rem !important;
-	text-decoration: none !important;
-}
 .textDescription {
 	text-align: center;
 	max-width: 50vw;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 .img {
 	max-height: 70vh;

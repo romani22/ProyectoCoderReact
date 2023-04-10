@@ -5,6 +5,7 @@ import styles from './ItemListContainer.module.css';
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import { ItemsContext } from '../../contexts/ItemsContext';
 import ItemList from '../ItemList';
+import ButtonBack from '../ButtonBack';
 const ItemListContainer = () => {
 	const [Options, setOptions] = useState([]);
 	const [Categorys, setCategorys] = useState([]);
@@ -47,14 +48,7 @@ const ItemListContainer = () => {
 				Categorys.map((Categoria, i) => {
 					return (
 						<div key={i} className={styles.sizeCard}>
-							{BtnVolver && (
-								<Link to="/home" className={styles.linkReverse}>
-									<Button variant="contained">
-										<KeyboardReturnIcon></KeyboardReturnIcon>
-										Volver
-									</Button>
-								</Link>
-							)}
+							{BtnVolver && <ButtonBack returnUrl="/home" />}
 							<div className={styles.cardCategory}>
 								<div>
 									<h1 className={styles.textCenter}>{Categoria}</h1>

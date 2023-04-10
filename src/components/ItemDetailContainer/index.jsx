@@ -1,18 +1,19 @@
-import { Button, Card, CardActionArea, CardContent, CardMedia, IconButton, Skeleton, Typography } from '@mui/material';
+import { Button, Card, CardContent, CardMedia, Skeleton, Typography } from '@mui/material';
 import styles from './ItemDetailContainer.module.css';
 import { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { CartShopContext } from '../../contexts/CartShop';
 import { ItemsContext } from '../../contexts/ItemsContext';
 import ItemQuantitySelector from '../ItemQuantitySelector';
 import Swal from 'sweetalert2';
+import ButtonBack from '../ButtonBack';
+import ItemDescription from '../ItemDescription';
 const ItemDetailContainer = () => {
 	const [returnUrl, setReturnUrl] = useState([]);
 	const [Loading, setLoading] = useState(true);
 	const { url, id } = useParams();
-	const { addToCart, cartItems } = useContext(CartShopContext);
+	const { addToCart } = useContext(CartShopContext);
 	const { Item, getItemsForID } = useContext(ItemsContext);
 
 	const handleAddToCart = () => {
@@ -47,46 +48,23 @@ const ItemDetailContainer = () => {
 	}, [url, returnUrl, Item, quantity]);
 	return (
 		<div key={Item.id}>
-			<Link to={returnUrl} className={styles.buttonReverse}>
-				<Button variant="contained">
-					<KeyboardReturnIcon></KeyboardReturnIcon>
-					Volver
-				</Button>
-			</Link>
-
+			<ButtonBack returnUrl={returnUrl} />
 			<div className={styles.itemCard}>
 				{Loading ? (
 					<Skeleton animation="wave" variant="rectangular" width={410} height={300} />
 				) : (
-					<>
-						<Card key={Item.id} className={styles.Card}>
-							<div className={styles.divImg}>
-								<CardMedia component="img" image={Item.img_link} alt="Perros" className={styles.img} />
-							</div>
-							<CardContent className={styles.textDescription}>
-								<Typography gutterBottom variant="h5" component="div">
-									{Item.nombre}
-								</Typography>
-								<Typography gutterBottom variant="h5" component="div">
-									$ {Item.precio}
-								</Typography>
-								{Object.keys(Item).map((e, i) => {
-									if (e != 'id' && e != 'precio' && e != 'nombre' && e != 'img_link' && e != 'raza' && e != 'cantidad') {
-										return (
-											<Typography key={i} gutterBottom variant="subtitle1" component="div">
-												{`${e.charAt(0).toUpperCase() + e.slice(1).replace(/_/g, ' ')}: ${Item[e]}`}
-											</Typography>
-										);
-									}
-								})}
-							</CardContent>
-
+					<Card key={Item.id} className={styles.Card}>
+						<div className={styles.divImg}>
+							<CardMedia component="img" image={Item.img_link} alt="Perros" className={styles.img} />
+						</div>
+						<CardContent className={styles.textDescription}>
+							<ItemDescription Item={Item} />
 							<ItemQuantitySelector funcion={handleQuantityChange} cant={quantity} />
 							<Button onClick={handleAddToCart} variant="contained">
 								<AddShoppingCartIcon />
 							</Button>
-						</Card>
-					</>
+						</CardContent>
+					</Card>
 				)}
 			</div>
 		</div>

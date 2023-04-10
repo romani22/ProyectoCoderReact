@@ -22,6 +22,9 @@ const ItemList = ({ item, grupo }) => {
 							<Typography gutterBottom variant="h5" component="div">
 								{item.nombre}
 							</Typography>
+							<Typography gutterBottom variant="body" component="div">
+								{item.descripcion}
+							</Typography>
 							<Typography gutterBottom variant="h5" component="div">
 								$ {item.precio}
 							</Typography>
