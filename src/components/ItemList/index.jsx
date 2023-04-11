@@ -1,4 +1,4 @@
-import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
+import { Card, CardActionArea, CardContent, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import styles from './ItemList.module.css';

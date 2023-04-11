@@ -1,7 +1,7 @@
-import { Button, Card, CardContent, CardMedia, Skeleton, Typography } from '@mui/material';
+import { Button, Card, CardContent, CardMedia, Skeleton } from '@mui/material';
 import styles from './ItemDetailContainer.module.css';
 import { useContext, useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { CartShopContext } from '../../contexts/CartShop';
 import { ItemsContext } from '../../contexts/ItemsContext';

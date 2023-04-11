@@ -1,8 +1,7 @@
-import { Button, Grid, Skeleton } from '@mui/material';
+import { Grid, Skeleton } from '@mui/material';
 import { useContext, useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import styles from './ItemListContainer.module.css';
-import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import { ItemsContext } from '../../contexts/ItemsContext';
 import ItemList from '../ItemList';
 import ButtonBack from '../ButtonBack';
