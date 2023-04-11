@@ -10,6 +10,7 @@ import '../../../node_modules/sweetalert2/dist/sweetalert2.css';
 import CardUserData from '../CardUserData';
 import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 import TicketPurchase from '../TicketPurchase';
+import { useNavigate } from 'react-router-dom';
 const Checkout = () => {
 	const { cartItems, cleanAllCart } = useContext(CartShopContext);
 	const [montoFinal, setMontoFinal] = useState(0);
@@ -19,6 +20,7 @@ const Checkout = () => {
 	const [openLoader, setOpenLoader] = useState(false);
 	const [Orden, setOrden] = useState({});
 	const orderCollectionRef = collection(db, 'orders');
+	const NavigateHome = useNavigate();
 
 	const handleClickOpen = () => {
 		setOpen(true);
@@ -52,6 +54,7 @@ const Checkout = () => {
 					TicketPurchase({ Orden, montoFinal });
 					setOrden({});
 					cleanAllCart();
+					NavigateHome('/home');
 				})
 				.catch((error) => {
 					console.error('Error al guardar el documento:', error);
